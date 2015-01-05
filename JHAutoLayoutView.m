@@ -18,9 +18,9 @@
 
 -(id)init {
     if (self = [super init]) {
+        [self setupSubviews];
         [self setupMetrics];
         [self setupViewDictionary];
-        [self setupSubviews];
         [self setTranslatesAutoresizingMaskIntoConstraintsForSubviews];
     }
     return self;

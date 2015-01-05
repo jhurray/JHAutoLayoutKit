@@ -24,8 +24,8 @@
 
 @implementation JHAutoLayoutTableViewCell
 
--(id)initWithAutoLayoutView:(JHAutoLayoutView *)autolayoutView padding:(JHAutoLayoutPadding *)padding minHeight:(CGFloat)minHeight {
-    if (self = [super init]) {
+-(id)initWithAutoLayoutView:(JHAutoLayoutView *)autolayoutView padding:(JHAutoLayoutPadding *)padding minHeight:(CGFloat)minHeight reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
         [self setupWithAutoLayoutView:autolayoutView padding:padding minHeight:minHeight];
     }
     return self;
@@ -33,7 +33,8 @@
 
 -(void)setupWithAutoLayoutView:(JHAutoLayoutView *)autolayoutView padding:(JHAutoLayoutPadding *)padding minHeight:(CGFloat)minHeight {
     self.autoLayoutView = autolayoutView;
-    self.padding = padding;
+    
+    self.padding = padding ? padding : [JHAutoLayoutPadding zero];
     self.minHeight = minHeight;
     [self setupSubviews];
     [self setupMetrics];
@@ -64,8 +65,10 @@
                                                                                options:0
                                                                                metrics:self.metrics
                                                                                  views:self.viewDictionary]];
-    [self.autoLayoutView addConstraints:autoLayoutViewConstraints];
-    [self.contentView addConstraints:contentViewConstraints];
+    [self.autoLayoutView addConstraints:autoLayoutViewConstraints[0]];
+    [self.autoLayoutView addConstraints:autoLayoutViewConstraints[1]];
+    [self.contentView addConstraints:contentViewConstraints[0]];
+    [self.contentView addConstraints:contentViewConstraints[1]];
 }
 
 -(void)setupMetrics {
@@ -74,6 +77,7 @@
                                       @"minHeight" : [NSNumber numberWithFloat:self.minHeight],
                                       @"width" : [NSNumber numberWithFloat:screenWidth-self.padding.left-self.padding.right]
                                       }];
+    NSLog(@"metrics are %@", self.metrics);
 }
 
 -(void)setupViewDictionary{

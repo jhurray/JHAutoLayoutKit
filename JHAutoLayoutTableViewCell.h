@@ -14,7 +14,7 @@
 
 @property(strong, nonatomic) JHAutoLayoutView *autoLayoutView;
 
--(id)initWithAutoLayoutView:(JHAutoLayoutView *)autolayoutView padding:(JHAutoLayoutPadding *)padding minHeight:(CGFloat)minHeight;
+-(id)initWithAutoLayoutView:(JHAutoLayoutView *)autolayoutView padding:(JHAutoLayoutPadding *)padding minHeight:(CGFloat)minHeight reuseIdentifier:(NSString *)reuseIdentifier ;
 // necessary if above initializer not called.
 -(void)setupWithAutoLayoutView:(JHAutoLayoutView *)autolayoutView padding:(JHAutoLayoutPadding *)padding minHeight:(CGFloat)minHeight;
 
