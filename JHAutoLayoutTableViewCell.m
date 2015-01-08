@@ -77,7 +77,6 @@
                                       @"minHeight" : [NSNumber numberWithFloat:self.minHeight],
                                       @"width" : [NSNumber numberWithFloat:screenWidth-self.padding.left-self.padding.right]
                                       }];
-    NSLog(@"metrics are %@", self.metrics);
 }
 
 -(void)setupViewDictionary{
